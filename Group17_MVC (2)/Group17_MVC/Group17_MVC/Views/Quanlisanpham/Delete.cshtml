@@ -1,0 +1,19 @@
+﻿@model Group17_MVC.Sach
+@{
+    ViewBag.Title = "Xóa sản phẩm";
+    
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card shadow-sm text-center p-4" style="max-width: 500px; width: 100%;">
+        <h2 class="text-danger mb-4">Xác nhận xóa sách</h2>
+        <p>Bạn có chắc chắn muốn xóa sách có mã: <strong>@Model.MaSach</strong>?</p>
+
+        <form method="post" action="@Url.Action("Delete", "Quanlisanpham", new { id = Model.MaSach })">
+            @Html.AntiForgeryToken()
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-danger">Xóa</button>
+                <a href="@Url.Action("Index", "Quanlisanpham")" class="btn btn-secondary">Hủy</a>
+            </div>
+        </form>
+    </div>
+</div>

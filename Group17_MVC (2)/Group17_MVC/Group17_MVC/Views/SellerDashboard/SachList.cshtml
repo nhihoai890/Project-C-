@@ -1,0 +1,160 @@
+﻿@model List<Group17_MVC.Sach>
+
+@{
+    ViewBag.Title = "SachList";
+}
+
+<div style="height: 100px;"></div>
+
+<div class="container mt-4" style="display: flex; background-color: #ffffff; padding: 30px;">
+
+    <!-- Sidebar -->
+    <div class="sidebar" style="width: 250px; background-color: #F5F5F5; padding: 20px 8px; height: 100vh;">
+        <h3 class="text-center" style="color: #F29F05;margin:8px">MENU</h3>
+        <ul class="list-unstyled" style="list-style: none; padding: 0; margin-top: 10px; width: 100%;"> 
+            <li"> 
+                <a href="@Url.Action("SachList", "SellerDashboard")" class="d-block py-2" style="color: #FFFFFF; font-size: 16px; text-decoration: none; padding: 10px; display: block; background-color: #F29F05;"> 
+                    Quản Lý Sách 
+                </a> 
+            </li> 
+            <li style="margin-top: 10px"> 
+                <a href="@Url.Action("QLDonHang", "SellerDashboard")" class="d-block py-2" style="color: #FFFFFF; font-size: 16px; text-decoration: none; padding: 10px; display: block; background-color: #F29F05;"> 
+                    Quản Lý Đơn Hàng 
+                </a> 
+            </li> 
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div style="flex-grow: 1; padding-left: 20px;">
+        <h2 class="text-center mb-4">Quản Lý Sách</h2>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;" class="text-end mb-3">
+            <!-- Nút xem tất cả sách -->
+            <button id="ShowAllBookButton" style="background-color: #F29F05" class="btn btn-primary">
+                Xem Tất Cả
+            </button>
+            <div class="position-relative mx-auto" style="flex-grow: 1; max-width: 600px;">
+                <!-- Ô nhập tìm kiếm -->
+                <input id="searchInput"
+                       class="form-control border-2 border-secondary w-100 py-3 px-4 rounded-pill"
+                       type="text"
+                       placeholder="Nhập tên sách cần tìm"
+                       style="padding-left: 50px; padding-right: 120px;">
+                <!-- Nút tìm kiếm -->
+                <button id="searchButton"
+                        class="btn btn-primary border-2 border-secondary py-2 px-4 position-absolute rounded-pill text-white"
+                        style="top: 50%; right: 10px; transform: translateY(-50%); background-color: #F29F05;">
+                    Tìm Kiếm
+                </button>
+            </div>
+            <!-- Nút thêm sách mới -->
+            <a style="background-color: #F29F05" href="@Url.Action("AddSach", "SellerDashboard")" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Thêm Sách Mới
+            </a>
+        </div>
+
+        <!-- Danh sách sách -->
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>STT</th>
+                    <th>Tên Sách</th>
+                    <th>Tác Giả</th>
+                    <th>Giá Bán (VND)</th>
+                    <th>Tồn Kho</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    int index = 1;
+                    foreach (var sachitem in Model)
+                    {
+                        <tr>
+                            <td>@index</td>
+                            <td>@sachitem.TenSach</td>
+                            <td>@sachitem.TacGia</td>
+                            <td>@sachitem.Gia.ToString("N0")</td>
+                            <td>@sachitem.SoLuongTon</td>
+
+                            <td style="display: flex; align-items: center;">
+                                <a href="@Url.Action("DetailsSach", "SellerDashboard", new { id = sachitem.MaSach })"
+                                   class="text-decoration-underline" style=" margin-left: 8px; color: blue; font-size: 16px;">
+                                    <i class="fas fa-info-circle"></i> Chi Tiết
+                                </a>
+
+                                <a style="margin-left:1rem;margin-right:1rem; background-color: #F29F05" href="@Url.Action("EditSach", "SellerDashboard", new { id = sachitem.MaSach })"
+                                   class="btn btn-sm btn-warning">
+                                    <i class="fas fa-edit"></i> Sửa
+                                </a>
+
+                                @using (Html.BeginForm("Delete", "SellerDashboard", new { id = sachitem.MaSach }, FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <button style="background-color: #F29F05" class="btn btn-sm btn-danger"
+                                            onclick="return confirmDelete('@sachitem.TenSach');">
+                                        <i class="fas fa-trash-alt"></i> Xóa
+                                    </button>
+                                }
+                            </td>
+                        </tr>
+                        index++;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center">Không có sách nào được hiển thị.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function confirmDelete(tenSach) {
+        return confirm('Bạn có chắc chắn muốn xóa sách ' + tenSach + ' hay không?');
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#searchButton").on("click", function (e) {
+            e.preventDefault();
+
+            const query = $("#searchInput").val().trim().toLowerCase();
+
+            $.ajax({
+                url: '@Url.Action("SearchSach", "SellerDashboard")',
+                type: 'GET',
+                data: { query: query },
+                success: function (response) {
+                    $("tbody").html(response);
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra khi tìm kiếm sách. Vui lòng thử lại.");
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('#ShowAllBookButton').click(function () {
+            $.ajax({
+                url: '@Url.Action("ShowAllBooks", "SellerDashboard")',
+                type: 'GET',
+                success: function (response) {
+                    $("tbody").html(response);
+                },
+                error: function () {
+                    alert('Có lỗi xảy ra khi tải sách!');
+                }
+            });
+        });
+    });
+</script>

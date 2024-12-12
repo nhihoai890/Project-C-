@@ -1,0 +1,130 @@
+﻿@model Group17_MVC.Sach
+@{
+    ViewBag.Title = "AddSach";
+}
+
+<div style="height: 100px"></div>
+<h2 class="text-center mb-4" style="margin-bottom: 20px">Thêm Sách Mới</h2>
+
+<div style="padding-left: 100px; padding-right: 100px; padding-bottom: 30px">
+    @using (Html.BeginForm("AddSach", "SellerDashboard", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <!-- Tên sách -->
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(m => m.TenSach, "Nhập Tên Sách")
+            @Html.TextBoxFor(m => m.TenSach, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TenSach)
+        </div>
+
+        <!-- Tác giả -->
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(m => m.TacGia, "Nhập Tên Tác Giả")
+            @Html.TextBoxFor(m => m.TacGia, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TacGia)
+        </div>
+
+        <!-- Nhà xuất bản -->
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(m => m.NhaXuatBan, "Nhập Tên Nhà Xuất Bản")
+            @Html.TextBoxFor(m => m.NhaXuatBan, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.NhaXuatBan)
+        </div>
+
+        <!-- Năm xuất bản -->
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(m => m.NamXuatBan, "Nhập Năm Xuất Bản Sách")
+            @Html.TextBoxFor(m => m.NamXuatBan, new { @class = "form-control", type = "number" })
+            @Html.ValidationMessageFor(m => m.NamXuatBan)
+        </div>
+
+        <!-- Thể loại -->
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(m => m.MaTheLoai, "Chọn Thể Loại Sách")
+            @Html.DropDownListFor(m => m.MaTheLoai, ViewBag.TheLoaiList as SelectList, "Chọn thể loại", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.MaTheLoai)
+        </div>
+
+        <!-- Giá bán -->
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(m => m.Gia, "Nhập Giá Bán")
+            @Html.TextBoxFor(m => m.Gia, new { @class = "form-control", type = "number", step = "0.01" })
+            @Html.ValidationMessageFor(m => m.Gia)
+        </div>
+
+        <!-- Số lượng tồn kho -->
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(m => m.SoLuongTon, "Nhập Số Lượng Tồn Kho")
+            @Html.TextBoxFor(m => m.SoLuongTon, new { @class = "form-control", type = "number" })
+            @Html.ValidationMessageFor(m => m.SoLuongTon)
+        </div>
+
+        <!-- Mô tả -->
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(m => m.MoTa, "Nhập Mô Tả")
+            @Html.TextAreaFor(m => m.MoTa, new { @class = "form-control", rows = "4" })
+            @Html.ValidationMessageFor(m => m.MoTa)
+        </div>
+
+        <!-- Chọn ảnh -->
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(model => model.URLAnhBia, "Chọn ảnh bìa")
+            <input type="file" id="fileUpload" name="imageFile" class="form-control" onchange="previewImage()" />
+        </div>
+
+        <!-- Hiển thị ảnh đã chọn -->
+        <div style="padding-bottom: 16px" class="form-group">
+            <label for="newImage">Ảnh Đã Thêm</label><br />
+            <img id="newImage" src="" alt="Ảnh Mới" style="max-width: 300px; display:none;" />
+        </div>
+
+        <!-- Hiển thị tên đường dẫn ảnh mới -->
+        <div style="padding-bottom: 16px" class="form-group">
+            <label for="imagePath">Đường dẫn ảnh mới</label><br />
+            <span id="imagePath">Chưa chọn ảnh</span>
+        </div>
+
+        <!-- Nút thêm sách và nút Quay lại-->
+<div style="margin-top:50px">
+    <button style="margin-right:1rem; background-color: #F29F05" type="submit" class="btn btn-primary">Thêm Sách</button>
+    <a style="background-color: #F29F05; margin-right: 1rem;" href="@Url.Action("AddSach", "SellerDashboard")" class="btn btn-primary">Tiếp Tục Thêm</a>
+    <a style="background-color: #F29F05; " href="@Url.Action("SachList", "SellerDashboard")" class="btn btn-primary">Quay Lại</a>
+</div>
+    }
+</div>
+
+<script>
+    // Hàm preview ảnh
+    function previewImage() {
+        var file = document.getElementById("fileUpload").files[0];
+        var reader = new FileReader();
+        var imagePath = document.getElementById("imagePath");
+        var newImage = document.getElementById("newImage");
+
+        // Kiểm tra loại tệp
+        var allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+        if (file && allowedTypes.includes(file.type)) {
+            reader.onloadend = function () {
+                imagePath.innerText = file.name; // Hiển thị tên file ảnh đã chọn
+                newImage.src = reader.result; // Đặt nguồn ảnh cho thẻ img
+                newImage.style.display = "block"; // Hiển thị ảnh
+            };
+            reader.readAsDataURL(file); // Đọc ảnh dưới dạng DataURL
+        } else {
+            // Thông báo lỗi nếu không phải ảnh
+            alert("Vui lòng chọn tệp ảnh có định dạng hợp lệ (jpg, jpeg, png, gif).");
+            newImage.style.display = "none";
+            imagePath.innerText = "Chưa chọn ảnh";
+        }
+    }
+
+    // Xác nhận trước khi submit form
+    document.querySelector("form").addEventListener("submit", function (event) {
+        var userConfirmed = confirm("Xác nhận thêm mới sách?");
+        if (!userConfirmed) {
+            event.preventDefault(); // Ngừng submit form nếu người dùng không xác nhận
+        }
+    });
+</script>
+

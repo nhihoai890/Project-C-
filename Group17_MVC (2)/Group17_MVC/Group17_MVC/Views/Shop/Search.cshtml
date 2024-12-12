@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Group17_MVC.ViewModel.ShopViewModel>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/DanhSachShop.cshtml";
+}
+<h1>Kết quả tìm kiếm</h1>
+
+@Html.Action("ShopItem", "Shop", new { model = Model })
+
+

@@ -1,0 +1,105 @@
+﻿@model Group17_MVC.Sach
+@{
+    ViewBag.Title = "Cập nhật sản phẩm";
+   
+}
+
+@section naviheader {
+   
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Admin")">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Cập nhật </a>
+        </li>
+    </ul>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Cập nhật sản phẩm</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Cập nhật sản phẩm</h3>
+        </div>
+        <div class="card-body">
+            <div class="bs-stepper-content">
+                @using (Html.BeginForm("Edit", "Quanlisanpham", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false)
+
+                    <div class="form-group">
+                        <label for="MaSach">Mã sách</label>
+                        @Html.TextBoxFor(x => x.MaSach, new { @class = "form-control", @placeholder = "Mã sách" })
+                        @Html.ValidationMessageFor(x => x.MaSach, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TheLoaiID">Mã thể loại</label>
+                        @Html.DropDownListFor(x => x.MaTheLoai, (IEnumerable<SelectListItem>)ViewBag.TheLoaiList, "Chọn mã thể loại", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.MaTheLoai, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TenSach">Tên sách</label>
+                        @Html.TextAreaFor(x => x.TenSach, new { @class = "form-control", @placeholder = "Tên sách" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TacGia">Tác giả</label>
+                        @Html.TextAreaFor(x => x.TacGia, new { @class = "form-control", @placeholder = "Tác giả" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="NhaXuatBan">Nhà xuất bản</label>
+                        @Html.TextAreaFor(x => x.NhaXuatBan, new { @class = "form-control", @placeholder = "Nhà xuất bản" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="NamXuatBan">Năm xuất bản</label>
+                        @Html.TextAreaFor(x => x.NamXuatBan, new { @class = "form-control", @placeholder = "Năm xuất bản" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Gia">Giá</label>
+                        @Html.TextAreaFor(x => x.Gia, new { @class = "form-control", @placeholder = "Giá" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="MoTa">Mô tả</label>
+                        @Html.TextAreaFor(x => x.MoTa, new { @class = "form-control", @placeholder = "Mô tả" })
+                    </div>
+
+                    <div class="form-group">
+                        <a href="@Url.Action("Index", "Quanlisanpham")"> class="btn btn-danger">Quay lại</a>
+                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="card-footer">
+        </div>
+
+    </div>
+</section>

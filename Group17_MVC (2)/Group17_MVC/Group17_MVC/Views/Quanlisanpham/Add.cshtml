@@ -1,0 +1,112 @@
+﻿@model Group17_MVC.Sach
+@{
+    ViewBag.Title = "Thêm mới sản phẩm";
+    
+}
+
+@section naviheader {
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Admin")">Trang chủ</a>
+        </li>
+        
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Thêm mới</a>
+        </li>
+    </ul>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thêm mới sản phẩm</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Thông tin sản phẩm mới</h3>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Add", "Quanlisanpham", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false)
+
+                <div class="form-group">
+                    <label for="MaSach">Mã sách</label>
+                    @Html.TextBoxFor(x => x.MaSach, new { @class = "form-control", @placeholder = "Mã sách" })
+                    @Html.ValidationMessageFor(x => x.MaSach, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="MaTheLoai">Mã thể loại</label>
+                    @Html.DropDownListFor(x => x.MaTheLoai, (IEnumerable<SelectListItem>)ViewBag.TheLoaiList, "Chọn mã thể loại", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.MaTheLoai, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="TenSach">Tên sách</label>
+                    @Html.TextBoxFor(x => x.TenSach, new { @class = "form-control", @placeholder = "Tên sách" })
+                    @Html.ValidationMessageFor(x => x.TenSach, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="TacGia">Tác giả</label>
+                    @Html.TextBoxFor(x => x.TacGia, new { @class = "form-control", @placeholder = "Tác giả" })
+                    @Html.ValidationMessageFor(x => x.TacGia, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="NhaXuatBan">Nhà xuất bản</label>
+                    @Html.TextBoxFor(x => x.NhaXuatBan, new { @class = "form-control", @placeholder = "Nhà xuất bản" })
+                    @Html.ValidationMessageFor(x => x.NhaXuatBan, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="NamXuatBan">Năm xuất bản</label>
+                    @Html.TextBoxFor(x => x.NamXuatBan, new { @class = "form-control", @placeholder = "Năm xuất bản" })
+                    @Html.ValidationMessageFor(x => x.NamXuatBan, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="Gia">Giá</label>
+                    @Html.TextBoxFor(x => x.Gia, new { @class = "form-control", @placeholder = "Giá" })
+                    @Html.ValidationMessageFor(x => x.Gia, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="MoTa">Mô tả</label>
+                    @Html.TextAreaFor(x => x.MoTa, new { @class = "form-control", @placeholder = "Mô tả sản phẩm" })
+                    @Html.ValidationMessageFor(x => x.MoTa, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <a href="@Url.Action("Index", "Quanlisanpham")">Quay lại</a>
+                    <button type="submit" class="btn btn-primary">Thêm mới</button>
+                </div>
+            }
+        </div>
+
+        <div class="card-footer">
+        </div>
+
+    </div>
+</section>

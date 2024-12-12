@@ -1,0 +1,86 @@
+﻿@model Group17_MVC.ViewModel.CheckoutViewModel
+
+<!-- Checkout Page Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <h1 class="mb-4">Chi tiết thanh toán</h1>
+
+        @using (Html.BeginForm("Checkout", "Cart", FormMethod.Post))
+        {
+            <div class="row g-5">
+                <!-- Thông tin khách hàng -->
+                <div class="col-md-12 col-lg-6 col-xl-7">
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(m => m.HoTen, "Họ Tên")
+                        @Html.TextBoxFor(m => m.HoTen, new { @class = "form-control", required = "required" })
+                    </div>
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", required = "required" })
+                    </div>
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(m => m.SoDienThoai, "Số Điện Thoại")
+                        @Html.TextBoxFor(m => m.SoDienThoai, new { @class = "form-control", required = "required" })
+                    </div>
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(m => m.DiaChi, "Địa Chỉ")
+                        @Html.TextBoxFor(m => m.DiaChi, new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
+
+                <!-- Thông tin đơn hàng -->
+                <div class="col-md-12 col-lg-6 col-xl-5">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sản Phẩm</th>
+                                    <th scope="col">Tên</th>
+                                    <th scope="col">Giá</th>
+                                    <th scope="col">Số lượng</th>
+                                    <th scope="col">Tổng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.CartItems != null && Model.CartItems.Count > 0)
+                                {
+                                    foreach (var item in Model.CartItems)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="~/Content/images/@item.Hinh"
+                                                         class="img-fluid rounded-circle"
+                                                         style="width: 90px; height: 90px;"
+                                                         alt="Ảnh sản phẩm">
+                                                </div>
+                                            </td>
+                                            <td class="py-4">@item.TenSach</td>
+                                            <td class="py-4">@item.Gia.ToString("N0") Đồng</td>
+                                            <td class="py-4">1</td>
+                                            <td class="py-4">@item.ThanhTien.ToString("N0") Đồng</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="5" class="text-center py-4">Giỏ hàng của bạn không có sản phẩm.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row g-4 text-center align-items-center justify-content-center pt-4">
+                        <button type="submit"
+                                class="btn btn-primary py-3 px-4 text-uppercase w-100">
+                            Đặt hàng
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!-- Checkout Page End -->

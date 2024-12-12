@@ -1,0 +1,124 @@
+﻿@model Group17_MVC.Sach
+@{
+    ViewBag.Title = "EditSach";
+}
+
+<div style="height: 100px;"></div>
+<h2 class="text-center mb-4" style="margin-bottom: 20px">Chỉnh Sửa Thông Tin Sách</h2>
+<div style="padding-left: 100px; padding-right: 100px; padding-bottom: 30px">
+    @using (Html.BeginForm("EditSach", "SellerDashboard", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken() <!-- Thêm AntiForgeryToken để bảo vệ khỏi CSRF -->
+
+        @Html.HiddenFor(model => model.MaSach) <!-- Giữ lại mã sách trong form -->
+
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(model => model.TenSach, "Tên Sách")
+            @Html.TextBoxFor(model => model.TenSach, new { @class = "form-control" })
+        </div>
+
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(model => model.TacGia, "Tác Giả")
+            @Html.TextBoxFor(model => model.TacGia, new { @class = "form-control" })
+        </div>
+
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(model => model.NhaXuatBan, "Nhà Xuất Bản")
+            @Html.TextBoxFor(model => model.NhaXuatBan, new { @class = "form-control" })
+        </div>
+
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(model => model.NamXuatBan, "Năm Xuất Bản")
+            @Html.TextBoxFor(model => model.NamXuatBan, new { @class = "form-control" })
+        </div>
+
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(model => model.Gia, "Giá Bán")
+            @Html.TextBoxFor(model => model.Gia, new { @class = "form-control" })
+        </div>
+
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(model => model.SoLuongTon, "Số Lượng Tồn Kho")
+            @Html.TextBoxFor(model => model.SoLuongTon, new { @class = "form-control" })
+        </div>
+
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(model => model.MaTheLoai, "Thể Loại Sách")
+            @Html.DropDownListFor(
+                model => model.MaTheLoai,
+                (SelectList)ViewBag.TheLoaiList,
+                "Chọn thể loại",
+                new { @class = "form-control" })
+        </div>
+
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(model => model.MoTa, "Mô tả")
+            @Html.TextAreaFor(model => model.MoTa, new { @class = "form-control", rows = 4 })
+        </div>
+
+        <!-- Hiển thị ảnh cũ -->
+        <div style="padding-bottom: 16px" class="form-group">
+            <label for="currentImage">Ảnh Bìa Cũ</label><br />
+            <img id="currentImage" src="@Url.Content("~/Content/images/" + Model.URLAnhBia)" alt="Ảnh Cũ" style="max-width: 300px;" />
+        </div>
+
+        <!-- Chọn ảnh bìa mới -->
+        <div style="padding-bottom: 16px" class="form-group">
+            @Html.LabelFor(model => model.URLAnhBia, "Chọn ảnh bìa mới")
+            <input type="file" id="fileUpload" name="imageFile" class="form-control" onchange="previewImage()" />
+        </div>
+
+        <!-- Hiển thị ảnh mới đã chọn -->
+        <div style="padding-bottom: 16px" class="form-group">
+            <label for="newImage">Ảnh Mới</label><br />
+            <img id="newImage" src="" alt="Ảnh Mới" style="max-width: 300px; display:none;" />
+        </div>
+
+        <!-- Hiển thị tên đường dẫn ảnh mới -->
+        <div style="padding-bottom: 16px" class="form-group">
+            <label for="imagePath">Đường dẫn ảnh mới</label><br />
+            <span id="imagePath">Chưa chọn ảnh</span>
+        </div>
+
+        <!-- Nút quay lại-->
+        <a style="background-color: #F29F05;" href="javascript:history.back()" class="btn btn-sm btn-warning">Quay Lại</a>
+
+        <!-- Chỉnh sửa onclick để đảm bảo ngừng submit nếu không xác nhận -->
+        <button style="background-color: #F29F05" type="submit" class="btn btn-sm btn-warning" id="submitBtn">Lưu Thay Đổi</button>
+    }
+</div>
+
+<script>
+    // Hàm hiển thị ảnh mới sau khi chọn
+    function previewImage() {
+        var fileInput = document.getElementById("fileUpload");
+        var file = fileInput.files[0];
+
+        // Kiểm tra xem có file nào được chọn không
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                // Cập nhật ảnh mới
+                var newImage = document.getElementById("newImage");
+                newImage.src = e.target.result;
+                newImage.style.display = "block";  // Hiển thị ảnh mới
+            };
+
+            // Đọc file ảnh
+            reader.readAsDataURL(file);
+
+            // Cập nhật đường dẫn ảnh mới
+            var imagePath = document.getElementById("imagePath");
+            imagePath.textContent = file.name;  // Hiển thị tên file ảnh
+        }
+    }
+
+    // Kiểm tra sự kiện trước khi submit
+    document.getElementById("submitBtn").addEventListener("click", function (event) {
+        var userConfirmed = confirm("Bạn có chắc chắn muốn lưu thay đổi?");
+        if (!userConfirmed) {
+            event.preventDefault(); // Ngừng submit form nếu người dùng không xác nhận
+        }
+    });
+</script>

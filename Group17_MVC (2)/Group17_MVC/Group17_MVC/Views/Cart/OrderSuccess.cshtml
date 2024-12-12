@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Order Success";
+    var bookNames = TempData["BookNames"] as List<string>;
+}
+
+<!-- Single Page Header start -->
+<div class="container-fluid page-header py-5">
+  
+</div>
+<!-- Single Page Header End -->
+<div class="container py-5 text-center">
+    <h1 class="mb-4 text-success">🎉 Đặt hàng thành công! 🎉</h1>
+    <p class="lead">Cảm ơn bạn đã đặt hàng tại cửa hàng của chúng tôi.</p>
+
+    @if (bookNames != null && bookNames.Count > 0)
+    {
+        <h3 class="mt-4">Các sản phẩm bạn đã đặt:</h3>
+        <ul class="list-group list-group-flush mb-4">
+            @foreach (var name in bookNames)
+            {
+                <li class="list-group-item">@name</li>
+            }
+        </ul>
+    }
+
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary mt-3">Tiếp tục mua sắm</a>
+</div>
+

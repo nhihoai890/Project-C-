@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Group17_MVC.ViewModel.MenuLoaiVM>
+
+<div class="col-lg-12">
+    <div class="mb-3">
+        <h4>Thể Loại</h4>
+        @if (Model != null && Model.Any())
+        {
+            <ul class="list-unstyled fruite-categorie">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <div class="d-flex justify-content-between fruite-name">
+                            <a href="@Url.Action("Index", "Shop", new { id = item.MaTheLoai })">
+                                <i class="fas fa-apple-alt me-2"></i>@item.TenTheLoai
+                            </a>
+                            <span>(@item.SoLuong)</span>
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Không có thể loại nào. (Model trống hoặc không có dữ liệu)</p>
+        }
+
+
+    </div>
+</div>
+

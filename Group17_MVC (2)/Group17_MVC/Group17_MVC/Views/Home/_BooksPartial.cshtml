@@ -1,0 +1,44 @@
+﻿
+@model IEnumerable<Group17_MVC.ViewModel.ShopViewModel>
+
+  <div class="row g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="rounded position-relative fruite-item">
+                   <div class="fruite-img">
+
+                       <a href="@Url.Action("Detail", "Home", new { id = item.MaSach })">
+                           <img src="~/Content/images/@item.Hinh" class="img-fluid w-100 rounded-top" alt="@item.MaSach">
+                       </a>
+
+                   </div>
+                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
+                        @item.TenTheLoai
+                    </div>
+                    <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                        <h4>@item.TenSach</h4>
+                        <div class="d-flex justify-content-between flex-lg-wrap">
+                            <p class="text-dark fs-5 fw-bold mb-0">
+                                @item.DonGia.ToString("N0") đồng
+                            </p>
+                            @{
+                                var userId = Session["UserId"];
+                            }
+
+                            @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+                            {
+                                @Html.Hidden("maSach", item.MaSach) <!-- Ẩn mã sách để gửi cùng form -->
+
+                                <button type="submit" class="btn btn-primary rounded-pill px-4">
+                                    <i class="fa fa-shopping-bag me-2"></i> Thêm vào giỏ hàng
+                                </button>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+                    

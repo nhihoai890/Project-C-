@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Gr17_WedBanSachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ApDungGiamGia">
+    <Key>
+      <PropertyRef Name="MaApDung" />
+    </Key>
+    <Property Name="MaApDung" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaDonHang" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaGiamGia" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DonHang" Relationship="Self.FK__ApDungGia__MaDon__6477ECF3" FromRole="ApDungGiamGia" ToRole="DonHang" />
+    <NavigationProperty Name="MaGiamGia1" Relationship="Self.FK__ApDungGia__MaGia__656C112C" FromRole="ApDungGiamGia" ToRole="MaGiamGia" />
+  </EntityType>
+  <EntityType Name="ChiTietDonHang">
+    <Key>
+      <PropertyRef Name="MaChiTiet" />
+    </Key>
+    <Property Name="MaChiTiet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaDonHang" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaSach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" Nullable="false" />
+    <Property Name="GiaBan" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="DonHang" Relationship="Self.FK__ChiTietDo__MaDon__4BAC3F29" FromRole="ChiTietDonHang" ToRole="DonHang" />
+    <NavigationProperty Name="Sach" Relationship="Self.FK__ChiTietDo__MaSac__4CA06362" FromRole="ChiTietDonHang" ToRole="Sach" />
+  </EntityType>
+  <EntityType Name="DanhGia">
+    <Key>
+      <PropertyRef Name="MaDanhGia" />
+    </Key>
+    <Property Name="MaDanhGia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaSach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaNguoiDung" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DiemDanhGia" Type="Int32" />
+    <Property Name="BinhLuan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="NguoiDung" Relationship="Self.FK__DanhGia__MaNguoi__534D60F1" FromRole="DanhGia" ToRole="NguoiDung" />
+    <NavigationProperty Name="Sach" Relationship="Self.FK__DanhGia__MaSach__52593CB8" FromRole="DanhGia" ToRole="Sach" />
+  </EntityType>
+  <EntityType Name="DanhSachYeuThich">
+    <Key>
+      <PropertyRef Name="MaYeuThich" />
+    </Key>
+    <Property Name="MaYeuThich" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaNguoiDung" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaSach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="NguoiDung" Relationship="Self.FK__DanhSachY__MaNgu__59063A47" FromRole="DanhSachYeuThich" ToRole="NguoiDung" />
+    <NavigationProperty Name="Sach" Relationship="Self.FK__DanhSachY__MaSac__59FA5E80" FromRole="DanhSachYeuThich" ToRole="Sach" />
+  </EntityType>
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="MaDonHang" />
+    </Key>
+    <Property Name="MaDonHang" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaNguoiDung" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TongTien" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="TrangThaiDonHang" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChiGiao" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ApDungGiamGias" Relationship="Self.FK__ApDungGia__MaDon__6477ECF3" FromRole="DonHang" ToRole="ApDungGiamGia" />
+    <NavigationProperty Name="ChiTietDonHangs" Relationship="Self.FK__ChiTietDo__MaDon__4BAC3F29" FromRole="DonHang" ToRole="ChiTietDonHang" />
+    <NavigationProperty Name="NguoiDung" Relationship="Self.FK__DonHang__MaNguoi__45F365D3" FromRole="DonHang" ToRole="NguoiDung" />
+  </EntityType>
+  <EntityType Name="MaGiamGia">
+    <Key>
+      <PropertyRef Name="MaGiamGia1" />
+    </Key>
+    <Property Name="MaGiamGia1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaVoucher" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhanTramGiam" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="NgayHetHan" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ApDungGiamGias" Relationship="Self.FK__ApDungGia__MaGia__656C112C" FromRole="MaGiamGia" ToRole="ApDungGiamGia" />
+  </EntityType>
+  <EntityType Name="NguoiDung">
+    <Key>
+      <PropertyRef Name="MaNguoiDung" />
+    </Key>
+    <Property Name="MaNguoiDung" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="VaiTro" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="DanhGias" Relationship="Self.FK__DanhGia__MaNguoi__534D60F1" FromRole="NguoiDung" ToRole="DanhGia" />
+    <NavigationProperty Name="DanhSachYeuThiches" Relationship="Self.FK__DanhSachY__MaNgu__59063A47" FromRole="NguoiDung" ToRole="DanhSachYeuThich" />
+    <NavigationProperty Name="DonHangs" Relationship="Self.FK__DonHang__MaNguoi__45F365D3" FromRole="NguoiDung" ToRole="DonHang" />
+  </EntityType>
+  <EntityType Name="Sach">
+    <Key>
+      <PropertyRef Name="MaSach" />
+    </Key>
+    <Property Name="MaSach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenSach" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TacGia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NhaXuatBan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NamXuatBan" Type="Int32" />
+    <Property Name="MaTheLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Gia" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="SoLuongTon" Type="Int32" />
+    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="URLAnhBia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ChiTietDonHangs" Relationship="Self.FK__ChiTietDo__MaSac__4CA06362" FromRole="Sach" ToRole="ChiTietDonHang" />
+    <NavigationProperty Name="DanhGias" Relationship="Self.FK__DanhGia__MaSach__52593CB8" FromRole="Sach" ToRole="DanhGia" />
+    <NavigationProperty Name="DanhSachYeuThiches" Relationship="Self.FK__DanhSachY__MaSac__59FA5E80" FromRole="Sach" ToRole="DanhSachYeuThich" />
+    <NavigationProperty Name="TheLoai" Relationship="Self.FK__Sach__MaTheLoai__3F466844" FromRole="Sach" ToRole="TheLoai" />
+    <Property Name="SoLuongDaBan" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TheLoai">
+    <Key>
+      <PropertyRef Name="MaTheLoai" />
+    </Key>
+    <Property Name="MaTheLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenTheLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Saches" Relationship="Self.FK__Sach__MaTheLoai__3F466844" FromRole="TheLoai" ToRole="Sach" />
+  </EntityType>
+  <Association Name="FK__ApDungGia__MaDon__6477ECF3">
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ApDungGiamGia" Type="Self.ApDungGiamGia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonHang">
+        <PropertyRef Name="MaDonHang" />
+      </Principal>
+      <Dependent Role="ApDungGiamGia">
+        <PropertyRef Name="MaDonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ApDungGia__MaGia__656C112C">
+    <End Role="MaGiamGia" Type="Self.MaGiamGia" Multiplicity="0..1" />
+    <End Role="ApDungGiamGia" Type="Self.ApDungGiamGia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MaGiamGia">
+        <PropertyRef Name="MaGiamGia1" />
+      </Principal>
+      <Dependent Role="ApDungGiamGia">
+        <PropertyRef Name="MaGiamGia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietDo__MaDon__4BAC3F29">
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonHang">
+        <PropertyRef Name="MaDonHang" />
+      </Principal>
+      <Dependent Role="ChiTietDonHang">
+        <PropertyRef Name="MaDonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietDo__MaSac__4CA06362">
+    <End Role="Sach" Type="Self.Sach" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sach">
+        <PropertyRef Name="MaSach" />
+      </Principal>
+      <Dependent Role="ChiTietDonHang">
+        <PropertyRef Name="MaSach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DanhGia__MaNguoi__534D60F1">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DanhGia" Type="Self.DanhGia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="MaNguoiDung" />
+      </Principal>
+      <Dependent Role="DanhGia">
+        <PropertyRef Name="MaNguoiDung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DanhGia__MaSach__52593CB8">
+    <End Role="Sach" Type="Self.Sach" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DanhGia" Type="Self.DanhGia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sach">
+        <PropertyRef Name="MaSach" />
+      </Principal>
+      <Dependent Role="DanhGia">
+        <PropertyRef Name="MaSach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DanhSachY__MaNgu__59063A47">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DanhSachYeuThich" Type="Self.DanhSachYeuThich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="MaNguoiDung" />
+      </Principal>
+      <Dependent Role="DanhSachYeuThich">
+        <PropertyRef Name="MaNguoiDung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DanhSachY__MaSac__59FA5E80">
+    <End Role="Sach" Type="Self.Sach" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DanhSachYeuThich" Type="Self.DanhSachYeuThich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sach">
+        <PropertyRef Name="MaSach" />
+      </Principal>
+      <Dependent Role="DanhSachYeuThich">
+        <PropertyRef Name="MaSach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DonHang__MaNguoi__45F365D3">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="MaNguoiDung" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="MaNguoiDung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sach__MaTheLoai__3F466844">
+    <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sach" Type="Self.Sach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TheLoai">
+        <PropertyRef Name="MaTheLoai" />
+      </Principal>
+      <Dependent Role="Sach">
+        <PropertyRef Name="MaTheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Nhom17_WedBanSachEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ApDungGiamGias" EntityType="Self.ApDungGiamGia" />
+    <EntitySet Name="ChiTietDonHangs" EntityType="Self.ChiTietDonHang" />
+    <EntitySet Name="DanhGias" EntityType="Self.DanhGia" />
+    <EntitySet Name="DanhSachYeuThiches" EntityType="Self.DanhSachYeuThich" />
+    <EntitySet Name="DonHangs" EntityType="Self.DonHang" />
+    <EntitySet Name="MaGiamGias" EntityType="Self.MaGiamGia" />
+    <EntitySet Name="NguoiDungs" EntityType="Self.NguoiDung" />
+    <EntitySet Name="Saches" EntityType="Self.Sach" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TheLoais" EntityType="Self.TheLoai" />
+    <AssociationSet Name="FK__ApDungGia__MaDon__6477ECF3" Association="Self.FK__ApDungGia__MaDon__6477ECF3">
+      <End Role="DonHang" EntitySet="DonHangs" />
+      <End Role="ApDungGiamGia" EntitySet="ApDungGiamGias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ApDungGia__MaGia__656C112C" Association="Self.FK__ApDungGia__MaGia__656C112C">
+      <End Role="MaGiamGia" EntitySet="MaGiamGias" />
+      <End Role="ApDungGiamGia" EntitySet="ApDungGiamGias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietDo__MaDon__4BAC3F29" Association="Self.FK__ChiTietDo__MaDon__4BAC3F29">
+      <End Role="DonHang" EntitySet="DonHangs" />
+      <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietDo__MaSac__4CA06362" Association="Self.FK__ChiTietDo__MaSac__4CA06362">
+      <End Role="Sach" EntitySet="Saches" />
+      <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DanhGia__MaNguoi__534D60F1" Association="Self.FK__DanhGia__MaNguoi__534D60F1">
+      <End Role="NguoiDung" EntitySet="NguoiDungs" />
+      <End Role="DanhGia" EntitySet="DanhGias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DanhGia__MaSach__52593CB8" Association="Self.FK__DanhGia__MaSach__52593CB8">
+      <End Role="Sach" EntitySet="Saches" />
+      <End Role="DanhGia" EntitySet="DanhGias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DanhSachY__MaNgu__59063A47" Association="Self.FK__DanhSachY__MaNgu__59063A47">
+      <End Role="NguoiDung" EntitySet="NguoiDungs" />
+      <End Role="DanhSachYeuThich" EntitySet="DanhSachYeuThiches" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DanhSachY__MaSac__59FA5E80" Association="Self.FK__DanhSachY__MaSac__59FA5E80">
+      <End Role="Sach" EntitySet="Saches" />
+      <End Role="DanhSachYeuThich" EntitySet="DanhSachYeuThiches" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DonHang__MaNguoi__45F365D3" Association="Self.FK__DonHang__MaNguoi__45F365D3">
+      <End Role="NguoiDung" EntitySet="NguoiDungs" />
+      <End Role="DonHang" EntitySet="DonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sach__MaTheLoai__3F466844" Association="Self.FK__Sach__MaTheLoai__3F466844">
+      <End Role="TheLoai" EntitySet="TheLoais" />
+      <End Role="Sach" EntitySet="Saches" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

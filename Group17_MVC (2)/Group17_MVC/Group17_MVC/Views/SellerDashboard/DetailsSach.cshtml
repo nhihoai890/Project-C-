@@ -1,0 +1,239 @@
+﻿@model Group17_MVC.Sach
+@{
+    ViewBag.Title = "DetailsSach";
+}
+
+<div style="height: 100px;"></div>
+<h2 class="text-center mb-4" style=" >Chi Tiết Sách</h2>
+
+<!-- Single Product Start -->
+<div class="container-fluid py-5 mt-5">
+    <div class="container py-5">
+        <div class="row g-4 mb-5">
+            <div class="col-lg-8 col-xl-9">
+                <div class="row g-4" style="display:flex; justify-content:space-between;">
+                    <div class="col-lg-6" style="max-width: 35%;" >
+                        <div class="border rounded">
+                            <a href="#">
+                                <img src="~/Content/images/@Model.URLAnhBia"
+                                     class="img-fluid rounded"
+                                     alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="max-width: 55%;">
+                        <h4 class="fw-bold mb-3" style="font-size: 32px;text-align: left;">@Model.TenSach</h4>
+                        <p class="mb-3" style="font-size: 20px; text-align: left; ">Thể Loại: @Model.TheLoai.TenTheLoai</p>
+                        <h5 class="fw-bold mb-3" style="font-size: 40px; text-align: left; font-family:  Arial, sans-serif;">@Model.Gia.ToString("0") đồng</h5>
+                        <div class="d-flex mb-4">
+                            <i class="fa fa-star text-secondary"></i>
+                            <i class="fa fa-star text-secondary"></i>
+                            <i class="fa fa-star text-secondary"></i>
+                            <i class="fa fa-star text-secondary"></i>
+                            <i class="fa fa-star"></i>
+                        </div>            
+                    </div>
+                    <div class="col-lg-12">
+                        <nav>
+                            <div class="nav nav-tabs mb-3" style="font-size: 20px;">
+                                <button class="nav-link active border-white border-bottom-0"
+                                        type="button" role="tab"
+                                        id="nav-about-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#nav-about"
+                                        aria-controls="nav-about"
+                                        aria-selected="true">
+                                    Mô Tả
+                                </button>
+                                <button class="nav-link border-white border-bottom-0"
+                                        type="button" role="tab"
+                                        id="nav-mission-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#nav-mission"
+                                        aria-controls="nav-mission"
+                                        aria-selected="false">
+                                    Đánh
+                                    Giá
+                                </button>
+                            </div>
+                        </nav>
+                        <div class="tab-content mb-5" style="font-size: 20px;">
+                            <div class="tab-pane active" id="nav-about"
+                                 role="tabpanel"
+                                 aria-labelledby="nav-about-tab">
+                                <p style="text-align: left;" id="moTaSach">@Model.MoTa</p>
+                                <div class="px-2">
+                                    <div class="row g-4">
+                                        <div class="col-6" style="width: 80%;">
+                                            <div class="row bg-light align-items-center text-center justify-content-center py-2">
+                                                <div style="text-align: left;" class="col-6">
+                                                    <p class="mb-0">
+                                                        Mã
+                                                        Sách
+                                                    </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0" id="maSach">@Model.MaSach</p>
+                                                </div>
+                                            </div>
+                                            <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                                                <div style="text-align: left;" class="col-6">
+                                                    <p class="mb-0">Tác Giả</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p id="tacGia"
+                                                       class="mb-0">
+                                                        @Model.TacGia
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row text-center align-items-center justify-content-center py-2">
+                                                <div style="text-align: left;" class="col-6">
+                                                    <p class="mb-0">Nhà Xuất Bản</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p id="nhaXuatBan"
+                                                       class="mb-0">@Model.NhaXuatBan</p>
+                                                </div>
+                                            </div>
+                                            <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                                                <div style="text-align: left;" class="col-6">
+                                                    <p class="mb-0">
+                                                        Năm Xuất Bản
+                                                    </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p id="namXuatBan" class="mb-0">
+                                                        @Model.NamXuatBan
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                                                <div style="text-align: left;" class="col-6">
+                                                    <p class="mb-0">
+                                                        Cập Nhật Gần Nhất
+                                                    </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p id="namXuatBan" class="mb-0">
+                                                        @Model.NgayTao
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="nav-mission"
+                                 role="tabpanel"
+                                 aria-labelledby="nav-mission-tab">
+                                <div class="d-flex">
+                                    <img src="~/Content/images/jang-won-young-17161724733911636300682.jpg"
+                                         class="img-fluid rounded-circle p-3"
+                                         style="width: 100px; height: 100px;"
+                                         alt>
+                                    <div class>
+                                        <p class="mb-2"
+                                           style="font-size: 14px;">24/11/2024</p>
+                                        <div class="d-flex justify-content-between">
+                                            <h5>Phan Mai Hoài Nhi</h5>
+                                            <div class="d-flex mb-3">
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <p class="text-dark">
+                                            Chính sách đổi trả rõ ràng,
+                                            rất uy tín. Mình sẽ giới
+                                            thiệu cho bạn bè.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <img src="~/Content/images/harry-potter-thumb.jpg"
+                                         class="img-fluid rounded-circle p-3"
+                                         style="width: 100px; height: 100px;"
+                                         alt>
+                                    <div class>
+                                        <p class="mb-2"
+                                           style="font-size: 14px;">24/11/2024</p>
+                                        <div class="d-flex justify-content-between">
+
+                                            <h5>Bùi Xuân Văn</h5>
+                                            <div class="d-flex mb-3">
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <p class="text-dark">
+                                            Không gian
+                                            mua sắm online thân thiện,
+                                            gợi ý sách rất hay và sát
+                                            với sở thích
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="nav-vision"
+                                 role="tabpanel">
+                                <p class="text-dark">
+                                    Tempor erat elitr
+                                    rebum at clita. Diam dolor diam
+                                    ipsum et tempor sit. Aliqu diam
+                                    amet diam et eos labore. 3
+                                </p>
+                                <p class="mb-0">
+                                    Diam dolor diam ipsum et
+                                    tempor sit. Aliqu diam amet diam et
+                                    eos labore.
+                                    Clita erat ipsum et lorem et sit
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-xl-3">
+                <div class="row g-4 fruite">
+                    <div class="col-lg-12">
+                        <div class="mb-3" style="font-size: 20px;">
+                            <p style="font-size: 20px; text-align: left;">Số Lượng Hiện Còn: @Model.SoLuongTon</p>
+                            <p style="font-size: 20px; text-align: left;">Số Lượng Đã Bán: @Model.SoLuongDaBan</p>
+                            <!-- Nút chỉnh sửa -->
+                            <a style="margin-bottom: 1rem; background-color: #F29F05; display: flex; justify-content: center; width: 70%; " href="@Url.Action("EditSach", "SellerDashboard",
+                                new { id = Model.MaSach })"
+                               class="btn btn-sm btn-warning">Chỉnh Sửa</a>
+
+                            <!-- Nút xóa -->
+                            @using (Html.BeginForm("Delete", "SellerDashboard", new { id = Model.MaSach }, FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken() <!-- Đây là để bảo mật cho POST request -->
+
+                                <button style="margin-bottom: 1rem; background-color: #F29F05; display: flex; justify-content: center; width: 70%;" class="btn btn-sm btn-warning"
+                                        onclick="return confirmDelete('@Model.TenSach');">
+                                    Xóa Sách
+                                </button>
+                            }
+                            <!-- Nút quay lại-->
+                            <a style="background-color: #F29F05; display: flex; justify-content: center; width: 70%;" href="@Url.Action("SachList", "SellerDashboard")" class="btn btn-sm btn-warning">Quay Lại</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+</div>
+
+<script type="text/javascript">
+    function confirmDelete(tenSach) {
+        return confirm('Bạn có chắc chắn muốn xóa sách ' + tenSach + ' hay không?');
+    }
+</script>

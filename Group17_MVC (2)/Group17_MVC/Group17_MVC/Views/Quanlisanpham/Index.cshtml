@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Quanlisanpham";
+}
+
+@section naviheader {
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Admin")">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Quanlisanpham")"> Quản lí sản phẩm</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Quanlinguoidung")">Quản lí người dùng</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Quanlidonhang")">Quản lí đơn hàng</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "ThongKe")"> Thống kê</a>
+        </li>
+    </ul>
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản lí sản phẩm</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Quản lí sản phẩm</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem; 
+        flex-wrap: nowrap; 
+        justify-content: center;
+        align-items: center;
+    }
+    thead th {
+        background-color: #4CAF50; 
+        color: white;
+        font-size: 1rem;
+        font-weight: bold; 
+        text-align: center; 
+        padding: 12px; 
+        text-transform: uppercase; 
+        letter-spacing: 1px; 
+        border-bottom: 2px solid #333;
+        border-top: 2px solid #333;
+        white-space: nowrap;
+    }
+
+        thead th:hover {
+            background-color: #388e3c; 
+        }
+
+        thead th:first-child {
+            border-left: 2px solid #333; 
+        }
+
+        thead th:last-child {
+            border-right: 2px solid #333;
+        }
+    
+</style>
+<section class="content">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3 class="card-title">Danh sách sản phẩm</h3>
+            <div class="card-tools">
+                <a href="@Url.Action("Add", "Quanlisanpham")"><i class="fas fa-plus"></i>Thêm mới</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mã sách</th>
+                        <th>Mã thể loại</th>
+                        <th>Tên sách</th>
+                        <th>Tác giả</th>
+                        <th>Nhà xuất bản</th>
+                        <th>Năm xuất bản</th>
+                        <th>Giá</th>
+                        <th>Mô tả</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in new Nhom17_WedBanSachEntities().Saches)
+                    {
+                        <tr>
+                            <td>@item.MaSach</td>
+                            <td>@item.MaTheLoai</td>
+                            <td>@item.TenSach</td>
+                            <td>@item.TacGia</td>
+                            <td>@item.NhaXuatBan</td>
+                            <td>@item.NamXuatBan</td>
+                            <td>@String.Format("{0:#,##0} đ", item.Gia)</td>
+                            <td>@item.MoTa</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a href="@Url.Action("Edit", "Quanlisanpham", new { id = item.MaSach })" class="btn btn-warning btn-sm">Sửa</a>
+                                    <a href="@Url.Action("Delete", "Quanlisanpham", new { id = item.MaSach })" class="btn btn-warning btn-sm">Xóa</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

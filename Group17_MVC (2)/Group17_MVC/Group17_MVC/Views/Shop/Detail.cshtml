@@ -1,0 +1,306 @@
+﻿@model Group17_MVC.ViewModel.ChiTietHangHoaVM
+@{
+    ViewBag.Title = "Detail";
+}
+
+<!-- Single Page Header start -->
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Chi tiết sản phẩm</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="#">Trang</a></li>
+        <li class="breadcrumb-item active text-white">Cửa hàng</li>
+    </ol>
+</div>
+<!-- Single Page Header End -->
+<!-- Single Product Start -->
+<div class="container-fluid py-5 mt-5">
+    <div class="container py-5">
+        <div class="row g-4 mb-5">
+            <div class="col-lg-8 col-xl-9">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="border rounded">
+                            <a asp-action="Detail" asp-route-id="@Model.MaSach">
+                                <img src="~/Content/images/@Model.Hinh"
+                                     class="img-fluid rounded"
+                                     alt="@Model.TenSach">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3">@Model.TenSach</h4>
+                        <h4 class="fw-bold mb-3">Tác giả: @Model.TacGia</h4>
+                        <p class="mb-3">Thể Loại: @Model.TenTheLoai</p>
+                        <h5 class="fw-bold mb-3">Giá: @Model.DonGia.ToString("N0") đồng</h5>
+                        <div class="d-flex mb-4">
+                            <i class="fa fa-star text-secondary"></i>
+                            <i class="fa fa-star text-secondary"></i>
+                            <i class="fa fa-star text-secondary"></i>
+                            <i class="fa fa-star text-secondary"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="mb-4">
+                            Mô tả: @Model.MoTa
+                        </p>
+
+                        @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+                        {
+                            @Html.Hidden("maSach", Model.MaSach) <!-- Mã sách ẩn để gửi cùng form -->
+
+                            <!-- Số lượng -->
+                            <div class="input-group quantity mb-5" style="width: 150px;">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-minus rounded-circle bg-light border" onclick="changeQuantity(-1)">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <input type="text" name="quantity" id="quantity" class="form-control form-control-sm text-center border-0" value="1" />
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-plus rounded-circle bg-light border" onclick="changeQuantity(1)">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary rounded-pill px-4">
+                                <i class="fa fa-shopping-bag me-2"></i> Thêm vào giỏ hàng
+                            </button>
+                        }
+                    </div>
+
+
+                    </div>
+                    <div class="col-lg-12">
+                        <nav>
+                            <div class="nav nav-tabs mb-3">
+                                <button class="nav-link active border-white border-bottom-0"
+                                        type="button" role="tab"
+                                        id="nav-about-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#nav-about"
+                                        aria-controls="nav-about"
+                                        aria-selected="true">
+                                    Mô tả
+                                </button>
+                                <button class="nav-link border-white border-bottom-0"
+                                        type="button" role="tab"
+                                        id="nav-mission-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#nav-mission"
+                                        aria-controls="nav-mission"
+                                        aria-selected="false">
+                                    Đánh
+                                    giá
+                                </button>
+                            </div>
+                        </nav>
+                        <div class="tab-content mb-5">
+                            <div class="tab-pane active" id="nav-about"
+                                 role="tabpanel"
+                                 aria-labelledby="nav-about-tab">
+                                <p>
+                                    Trong quá trình viết cuốn sách này,
+                                    tôi luôn đặt ra trong đầu câu hỏi:
+                                    Nếu các nhà Khắc kỷ cổ đại đảm nhận
+                                    trọng trách viết một cuốn sách hướng
+                                    dẫn cho những người sống ở thế kỷ
+                                    hai mốt – một cuốn sách chỉ cho
+                                    chúng ta cách có được một cuộc sống
+                                    tốt đẹp – thì cuốn sách đó sẽ như
+                                    thế nào. Các trang tiếp theo là câu
+                                    trả lời của tôi cho câu hỏi này.”
+                                    Chia sẻ của tác giả William B.Irvine
+                                    tới bạn đọc!
+                                </p>
+                                <p>
+                                    Các học giả đồng nghiệp của tôi có
+                                    thể hứng thú với cuốn sách này;
+                                    chẳng hạn họ tò mò xem tôi diễn giải
+                                    những phát biểu của chủ nghĩa Khắc
+                                    kỷ như thế nào. Tuy nhiên, đối tượng
+                                    độc giả chính mà tôi hướng đến là
+                                    những cá nhân bình thường, những
+                                    người băn khoăn không biết bản thân
+                                    có đang sống lầm lỗi hay không. Đối
+                                    tượng này gồm những người dần nhận
+                                    ra rằng họ thiếu một triết lý sống
+                                    nhất quán và hậu quả là họ đang lúng
+                                    túng trong các hoạt động thường ngày
+                                    của mình: những thành quả họ đạt
+                                    được ngày hôm nay lại phủi sạch
+                                    những thành quả đã đạt được ngày hôm
+                                    trước. Đồng thời, tôi cũng hướng đến
+                                    những người đã có một triết lý sống
+                                    nhưng lo ngại rằng triết lý đó phần
+                                    nào khiếm khuyết.
+                                </p>
+                                <div class="px-2">
+                                    <div class="row g-4">
+                                        <div class="col-6">
+                                            <div class="row bg-light align-items-center text-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">
+                                                        Mã
+                                                        Hàng
+                                                    </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0">001</p>
+                                                </div>
+                                            </div>
+                                            <div class="row text-center align-items-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">
+                                                        Tên
+                                                        nhà cung cấp
+                                                    </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0">
+                                                        Thái
+                                                        Hà
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">
+                                                        Tác
+                                                        giả
+                                                    </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0">
+                                                        William B
+                                                        Irvine
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row text-center align-items-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">NXB</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0">
+                                                        NXB
+                                                        Công Thương
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">
+                                                        Năm
+                                                        xuất bản
+                                                    </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0">
+                                                        2020
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="nav-mission"
+                                 role="tabpanel"
+                                 aria-labelledby="nav-mission-tab">
+                                <div class="d-flex">
+                                    <img src="~/Content/images/jang-won-young-17161724733911636300682.webp"
+                                         class="img-fluid rounded-circle p-3"
+                                         style="width: 100px; height: 100px;"
+                                         alt="">
+                                    <div class="">
+                                        <p class="mb-2"
+                                           style="font-size: 14px;">24/11/2024</p>
+                                        <div class="d-flex justify-content-between">
+                                            <h5>Phan Mai Hoài Nhi</h5>
+                                            <div class="d-flex mb-3">
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            Chính sách đổi trả rõ ràng,
+                                            rất uy tín. Mình sẽ giới
+                                            thiệu cho bạn bè.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <img src="~/Content/images/harry-potter-thumb.jpg"
+                                         class="img-fluid rounded-circle p-3"
+                                         style="width: 100px; height: 100px;"
+                                         alt>
+                                    <div class>
+                                        <p class="mb-2"
+                                           style="font-size: 14px;">24/11/2024</p>
+                                        <div class="d-flex justify-content-between">
+
+                                            <h5>Bùi Xuân Văn</h5>
+                                            <div class="d-flex mb-3">
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <p class="text-dark">
+                                            Không gian
+                                            mua sắm online thân thiện,
+                                            gợi ý sách rất hay và sát
+                                            với sở thích
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="nav-vision"
+                                 role="tabpanel">
+                                <p class="text-dark">
+                                    Tempor erat elitr
+                                    rebum at clita. Diam dolor diam
+                                    ipsum et tempor sit. Aliqu diam
+                                    amet diam et eos labore. 3
+                                </p>
+                                <p class="mb-0">
+                                    Diam dolor diam ipsum et
+                                    tempor sit. Aliqu diam amet diam et
+                                    eos labore.
+                                    Clita erat ipsum et lorem et sit
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+
+           
+
+            </div>
+        </div>
+
+<script>
+    $("#addToCartForm").submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: '@Url.Action("AddToCart", "Cart")',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function (data) {
+                $("#cartIconContainer").html(data); // Cập nhật icon giỏ hàng
+            },
+            error: function () {
+                alert("Có lỗi xảy ra khi thêm vào giỏ hàng.");
+            }
+        });
+    });
+</script>

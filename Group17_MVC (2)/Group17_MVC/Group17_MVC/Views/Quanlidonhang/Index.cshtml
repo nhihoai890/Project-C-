@@ -1,0 +1,334 @@
+﻿@model List<Group17_MVC.DonHang>
+
+@{
+    ViewBag.Title = "Quản lí đơn hàng";
+   
+}
+@section naviheader {
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Admin")" >Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Quanlisanpham")"> Quản lí sản phẩm</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Quanlinguoidung")" >Quản lí người dùng</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Quanlidonhang")" >Quản lí đơn hàng</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "ThongKe")"> Thống kê</a>
+        </li>
+    </ul>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản lí đơn hàng</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Quản lí đơn hàng</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lí đơn hàng</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #16a34a;
+            --background-color: #f1f5f9;
+            --border-color: #e2e8f0;
+            --text-color: #1e293b;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            padding: 2rem;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .panel {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+            .search-box input {
+                flex-grow: 1;
+                padding: 10px;
+                font-size: 1rem;
+                border: 1px solid var(--border-color);
+                border-radius: 0.5rem;
+                transition: border-color 0.3s ease;
+            }
+
+                .search-box input:focus {
+                    border-color: var(--primary-color);
+                    outline: none;
+                    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+                }
+
+            .search-box button, .search-box a {
+                padding: 0.625rem 1rem;
+                border: none;
+                border-radius: 0.5rem;
+                font-weight: 500;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+
+                .search-box button:hover, .search-box a:hover {
+                    filter: brightness(90%);
+                }
+
+        .btn-blue {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+            .btn-blue:hover {
+                background-color: var(--secondary-color);
+            }
+
+        .btn-green {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+            .btn-green:hover {
+                filter: brightness(90%);
+            }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 1rem;
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        td {
+            font-size: 0.875rem;
+        }
+
+        .total {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--border-color);
+            text-align: right;
+            font-weight: 600;
+        }
+
+            .total span {
+                color: var(--primary-color);
+                font-size: 1.125rem;
+            }
+
+        #detailsSection {
+            min-height: 200px;
+        }
+
+            #detailsSection p {
+                margin-bottom: 0.75rem;
+                font-size: 0.875rem;
+            }
+
+            #detailsSection h4 {
+                margin: 1.5rem 0 1rem;
+                font-size: 1rem;
+                color: var(--text-color);
+            }
+
+        .empty-state {
+            text-align: center;
+            color: #64748b;
+            padding: 2rem;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Panel -->
+        <div class="panel">
+            <h3>Danh sách đơn hàng</h3>
+            <div class="search-box">
+                @using (Html.BeginForm("Index", "Quanlidonhang", FormMethod.Get))
+                {
+                    <input type="text" name="SearchString" placeholder="Tìm theo mã đơn hàng" value="@Request.QueryString["SearchString"]" />
+                    <button type="submit" class="btn btn-green">Tìm kiếm</button>
+                    <a href="@Url.Action("Index", "Quanlidonhang")" class="btn btn-blue">Làm mới</a>
+                }
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã Đơn Hàng</th>
+                        <th>Tên Khách Hàng</th>
+                        <th>Tình Trạng</th>
+                        <th>Tổng tiền</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="5" class="empty-state">Không tìm thấy đơn hàng nào phù hợp.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MaDonHang</td>
+                                <td>@item.NguoiDung.HoTen</td>
+                                <td>@item.TrangThaiDonHang</td>
+                                <td>@String.Format("{0:#,##0} đ", item.TongTien)</td>
+                                <td>
+                                    <button class="btn btn-blue" onclick="xemChiTiet('@item.MaDonHang')">Xem Chi Tiết</button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel">
+            <h3>Chi tiết Đơn Hàng</h3>
+            <div id="detailsSection" class="empty-state">
+                <p>Chọn một đơn hàng để xem chi tiết.</p>
+            </div>
+            <div class="total">
+                Tổng tiền: <span id="totalAmount">0 đ</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function xemChiTiet(maDonHang) {
+            $.ajax({
+                url: '@Url.Action("ChiTietDonHang", "Quanlidonhang")',
+                type: 'GET',
+                data: { maDonHang: maDonHang },
+                success: function (data) {
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+
+                    let content = `
+                        <p><strong>Mã Đơn Hàng:</strong> ${data.MaDonHang}</p>
+                        <p><strong>Người Dùng:</strong> ${data.NguoiDung}</p>
+                        <p><strong>Tổng Tiền:</strong> ${data.TongTien.toLocaleString()} đ</p>
+                        <h4>Danh sách sản phẩm</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mã Sách</th>
+                                    <th>Tên Sách</th>
+                                    <th>Tác Giả</th>
+                                    <th>Số Lượng</th>
+                                    <th>Giá Bán</th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+                    data.ChiTiet.forEach(item => {
+                        content += `
+                            <tr>
+                                <td>${item.MaSach}</td>
+                                <td>${item.TenSach}</td>
+                                <td>${item.TacGia}</td>
+                                <td>${item.SoLuong}</td>
+                                <td>${item.GiaBan.toLocaleString()} đ</td>
+                            </tr>`;
+                    });
+                    content += `</tbody></table>`;
+
+                    $("#detailsSection").html(content);
+                    $("#totalAmount").text(`${data.TongTien.toLocaleString()} đ`);
+                },
+                error: function () {
+                    alert("Lỗi khi tải chi tiết đơn hàng.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>

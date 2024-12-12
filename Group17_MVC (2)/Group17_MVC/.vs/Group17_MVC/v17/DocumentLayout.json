@@ -1,0 +1,172 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Group17_MVC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|d:\\group17_mvc\\group17_mvc\\views\\shared\\_layout1.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|solutionrelative:group17_mvc\\views\\shared\\_layout1.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|d:\\group17_mvc\\group17_mvc\\views\\sellerdashboard\\sachlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|solutionrelative:group17_mvc\\views\\sellerdashboard\\sachlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|d:\\group17_mvc\\group17_mvc\\views\\sellerdashboard\\qldonhang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|solutionrelative:group17_mvc\\views\\sellerdashboard\\qldonhang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|d:\\group17_mvc\\group17_mvc\\views\\sellerdashboard\\detailsdh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|solutionrelative:group17_mvc\\views\\sellerdashboard\\detailsdh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|d:\\group17_mvc\\group17_mvc\\views\\quanlisanpham\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|solutionrelative:group17_mvc\\views\\quanlisanpham\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|d:\\group17_mvc\\group17_mvc\\views\\sellerdashboard\\detailssach.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|solutionrelative:group17_mvc\\views\\sellerdashboard\\detailssach.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|d:\\group17_mvc\\group17_mvc\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|solutionrelative:group17_mvc\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|d:\\group17_mvc\\group17_mvc\\views\\sellerdashboard\\addsach.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5D4C0CBE-C1D8-4A03-A8B2-E0B11A287A1C}|Group17_MVC\\Group17_MVC.csproj|solutionrelative:group17_mvc\\views\\sellerdashboard\\addsach.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SachList.cshtml",
+              "DocumentMoniker": "D:\\Group17_MVC\\Group17_MVC\\Views\\SellerDashboard\\SachList.cshtml",
+              "RelativeDocumentMoniker": "Group17_MVC\\Views\\SellerDashboard\\SachList.cshtml",
+              "ToolTip": "D:\\Group17_MVC\\Group17_MVC\\Views\\SellerDashboard\\SachList.cshtml",
+              "RelativeToolTip": "Group17_MVC\\Views\\SellerDashboard\\SachList.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-10T21:14:00.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DetailsDH.cshtml",
+              "DocumentMoniker": "D:\\Group17_MVC\\Group17_MVC\\Views\\SellerDashboard\\DetailsDH.cshtml",
+              "RelativeDocumentMoniker": "Group17_MVC\\Views\\SellerDashboard\\DetailsDH.cshtml",
+              "ToolTip": "D:\\Group17_MVC\\Group17_MVC\\Views\\SellerDashboard\\DetailsDH.cshtml",
+              "RelativeToolTip": "Group17_MVC\\Views\\SellerDashboard\\DetailsDH.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-10T21:11:12.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "QLDonHang.cshtml",
+              "DocumentMoniker": "D:\\Group17_MVC\\Group17_MVC\\Views\\SellerDashboard\\QLDonHang.cshtml",
+              "RelativeDocumentMoniker": "Group17_MVC\\Views\\SellerDashboard\\QLDonHang.cshtml",
+              "ToolTip": "D:\\Group17_MVC\\Group17_MVC\\Views\\SellerDashboard\\QLDonHang.cshtml",
+              "RelativeToolTip": "Group17_MVC\\Views\\SellerDashboard\\QLDonHang.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-10T21:10:36.702Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\Group17_MVC\\Group17_MVC\\Views\\Quanlisanpham\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Group17_MVC\\Views\\Quanlisanpham\\Delete.cshtml",
+              "ToolTip": "D:\\Group17_MVC\\Group17_MVC\\Views\\Quanlisanpham\\Delete.cshtml",
+              "RelativeToolTip": "Group17_MVC\\Views\\Quanlisanpham\\Delete.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-10T21:04:32.835Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout1.cshtml",
+              "DocumentMoniker": "D:\\Group17_MVC\\Group17_MVC\\Views\\Shared\\_Layout1.cshtml",
+              "RelativeDocumentMoniker": "Group17_MVC\\Views\\Shared\\_Layout1.cshtml",
+              "ToolTip": "D:\\Group17_MVC\\Group17_MVC\\Views\\Shared\\_Layout1.cshtml",
+              "RelativeToolTip": "Group17_MVC\\Views\\Shared\\_Layout1.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAE0AAADcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-10T20:11:07.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DetailsSach.cshtml",
+              "DocumentMoniker": "D:\\Group17_MVC\\Group17_MVC\\Views\\SellerDashboard\\DetailsSach.cshtml",
+              "RelativeDocumentMoniker": "Group17_MVC\\Views\\SellerDashboard\\DetailsSach.cshtml",
+              "ToolTip": "D:\\Group17_MVC\\Group17_MVC\\Views\\SellerDashboard\\DetailsSach.cshtml",
+              "RelativeToolTip": "Group17_MVC\\Views\\SellerDashboard\\DetailsSach.cshtml",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAAAIIAAABqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-10T21:02:03.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Sach.cs",
+              "DocumentMoniker": "D:\\Group17_MVC\\Group17_MVC\\Sach.cs",
+              "RelativeDocumentMoniker": "Group17_MVC\\Sach.cs",
+              "ToolTip": "D:\\Group17_MVC\\Group17_MVC\\Sach.cs",
+              "RelativeToolTip": "Group17_MVC\\Sach.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowCQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T20:58:35.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AddSach.cshtml",
+              "DocumentMoniker": "D:\\Group17_MVC\\Group17_MVC\\Views\\SellerDashboard\\AddSach.cshtml",
+              "RelativeDocumentMoniker": "Group17_MVC\\Views\\SellerDashboard\\AddSach.cshtml",
+              "ToolTip": "D:\\Group17_MVC\\Group17_MVC\\Views\\SellerDashboard\\AddSach.cshtml",
+              "RelativeToolTip": "Group17_MVC\\Views\\SellerDashboard\\AddSach.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-10T20:17:09.446Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

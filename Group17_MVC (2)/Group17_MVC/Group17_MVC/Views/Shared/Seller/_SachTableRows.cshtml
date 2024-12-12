@@ -1,0 +1,41 @@
+﻿@model List<Group17_MVC.Sach>
+
+@if (Model != null && Model.Count > 0)
+{
+    int index = 1;
+    foreach (var sachitem in Model)
+    {
+        <tr>
+            <td>@index</td>
+            <td><a href="#">@sachitem.TenSach</a></td>
+            <td>@sachitem.TacGia</td>
+            <td>@sachitem.Gia.ToString("N0")</td>
+            <td>@sachitem.SoLuongTon</td>
+            <td style="display: flex; align-items: center;">
+                <a href="@Url.Action("Details", "SellerDashboard", new { id = sachitem.MaSach })"
+                   class="text-decoration-underline" style=" margin-left: 8px; color: blue; font-size: 16px;">
+                    <i class="fas fa-info-circle"></i> Chi Tiết
+                </a>
+                <a style="margin-left:1rem;margin-right:1rem; background-color: #F29F05" href="@Url.Action("EditSach", "SellerDashboard", new { id = sachitem.MaSach })"
+                   class="btn btn-sm btn-warning">
+                    <i class="fas fa-edit"></i> Sửa
+                </a>
+                @using (Html.BeginForm("Delete", "SellerDashboard", new { id = sachitem.MaSach }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <button style="background-color: #F29F05" class="btn btn-sm btn-danger"
+                            onclick="return confirmDelete('@sachitem.TenSach');">
+                        <i class="fas fa-trash-alt"></i> Xóa
+                    </button>
+                }
+            </td>
+        </tr>
+        index++;
+    }
+}
+else
+{
+    <tr>
+        <td colspan="6" class="text-center">Không có sách nào được tìm thấy.</td>
+    </tr>
+}

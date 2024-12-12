@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<!-- Single Page Header start -->
+@RenderSection("BreadCum", required:false)
+
+<!-- Single Page Header End -->
+<!-- Books Shop Start-->
+<div class="container-fluid fruite py-5">
+    <div class="container py-5">
+        <h1 class="mb-4">Sách Đa Dạng</h1>
+        <div class="row g-4">
+            <div class="col-lg-12">
+                <div class="row g-4">
+                    <div class="col-xl-3">
+                        <div class="input-group w-100 mx-auto d-flex">
+                            <form action="@Url.Action("Search", "Shop")" method="get" class="d-flex align-items-center">
+                                <input type="text"
+                                       name="query"
+                                       class="form-control me-2 p-3"
+                                       placeholder="Nhập từ khóa..."
+                                       aria-label="Tìm kiếm">
+                                <button type="submit" class="btn btn-primary p-3">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </form>
+
+
+                        </div>
+                    </div>
+                    <div class="col-6"></div>
+                    <div class="col-xl-3">
+                        <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
+                            <label for="fruits">
+                                Phân loại mặc
+                                định:
+                            </label>
+                            <select id="fruits" name="fruitlist"
+                                    class="border-0 form-select-sm bg-light me-3"
+                                    for="fruitform">
+                                <option value="volvo">Không</option>
+                                <option value="saab">Phổ biển</option>
+                                <option value="opel">Ưu đãi</option>
+                                <option value="audi">Hãng</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3">
+                        <div class="row g-4">
+                            <div class="col-lg-12">
+                                @Html.Action("MenuLoai", "Shared")
+                            </div>
+
+                            
+                            <div class="col-lg-12">
+                                <div class="position-relative">
+
+                                    <div class="position-absolute"
+                                         style="top: 50%; right: 10px; transform: translateY(-50%);">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+
+                        <div class="row g-4 justify-content-center">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Book Shop End-->

@@ -1,0 +1,319 @@
+﻿@model IEnumerable<Group17_MVC.NguoiDung>
+@{
+    ViewBag.Title = "Index";
+    
+}
+@section naviheader {
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Admin")">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Quanlisanpham")"> Quản lí sản phẩm</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Quanlinguoidung")">Quản lí người dùng</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "Quanlidonhang")">Quản lí đơn hàng</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Url.Action("Index", "ThongKe")"> Thống kê</a>
+        </li>
+    </ul>
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản lí người dùng</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Quản lí người dùng</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Người Dùng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --danger-color: #F44336;
+            --background-color: #F5F5F5;
+            --text-color: #333;
+            --border-color: #E0E0E0;
+            --font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+            .header h1 {
+                margin: 0;
+                font-size: 1.8rem;
+            }
+
+        .breadcrumb {
+            font-size: 0.875rem;
+            margin-top: 5px;
+        }
+
+            .breadcrumb a {
+                color: #e8f5e9;
+                text-decoration: none;
+            }
+
+        .action-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            
+        }
+
+        .search-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+            .btn-primary:hover {
+                background-color: #388e3c;
+            }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+            .btn-secondary:hover {
+                background-color: #1976d2;
+            }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+            .btn-danger:hover {
+                background-color: #d32f2f;
+            }
+
+        .table-container {
+            overflow-x: auto;
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+            .user-table th,
+            .user-table td {
+                padding: 15px;
+                text-align: left;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .user-table th {
+                background-color: #f1f8e9;
+                color: var(--text-color);
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+
+            .user-table tr:hover {
+                background-color: #e8f5e9;
+            }
+
+       
+        .badge {
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: bold;
+            display: inline-block;
+            text-transform: capitalize;
+        }
+
+        .badge-admin {
+            background-color: #1e88e5;
+            color: #ffffff; 
+        }
+
+        .badge-customer {
+            background-color: #e53935;
+            color: #ffffff;
+        }
+
+        .badge-success {
+            background-color: var(--primary-color);
+        }
+
+        .badge-danger {
+            background-color: var(--danger-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+       
+        <div class="action-bar">
+            @using (Html.BeginForm("Index", "Quanlinguoidung", FormMethod.Get))
+            {
+                <input type="text"
+                       name="searchString"
+                       class="search-input"
+                       placeholder="Tìm kiếm theo tên hoặc email..."
+                       value="@ViewBag.SearchString">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Tìm kiếm
+                </button>
+            }
+            <a href="@Url.Action("Index", "Quanlinguoidung")" class="btn btn-secondary">
+                <i class="fas fa-sync-alt"></i> Làm mới
+            </a>
+            <div class="card-tools">
+                <a href="@Url.Action("Add", "Quanlinguoidung")" class="btn btn-danger">
+                    <i class="fas fa-plus"></i> Thêm mới
+                </a>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>Mã</th>
+                        <th>Tên</th>
+                        <th>Điện Thoại</th>
+                        <th>Địa Chỉ</th>
+                        <th>Email</th>
+                        <th>Vai Trò</th>
+                        <th>Trạng Thái</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaNguoiDung</td>
+                            <td>@item.HoTen</td>
+                            <td>@item.SoDienThoai</td>
+                            <td>@item.DiaChi</td>
+                            <td>@item.Email</td>
+                            <td>
+                                @if (item.VaiTro == "Admin")
+                                {
+                                    <span class="badge badge-admin">Quản trị viên</span>
+                                }
+                                else 
+                                {
+                                    <span class="badge badge-customer">Khách hàng</span>
+                                }
+                               
+                            </td>
+                            <td>
+                                @if (((HashSet<string>)ViewBag.LockedAccounts).Contains(item.MaNguoiDung))
+                                {
+                                    <span class="badge badge-danger">Bị Khóa</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-success">Hoạt Động</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-primary" title="Cập nhật vai trò"
+                                            onclick="location.href='@Url.Action("Edit", "Quanlinguoidung", new { id = item.MaNguoiDung })'">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    @if (((HashSet<string>)ViewBag.LockedAccounts).Contains(item.MaNguoiDung))
+                                    {
+                                        <button class="btn btn-success" title="Mở khóa"
+                                                onclick="location.href='@Url.Action("UnlockAccount", "Quanlinguoidung", new { id = item.MaNguoiDung })'">
+                                            <i class="fas fa-unlock"></i>
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-danger" title="Khóa"
+                                                onclick="location.href='@Url.Action("LockAccount", "Quanlinguoidung", new { id = item.MaNguoiDung })'">
+                                            <i class="fas fa-lock"></i>
+                                        </button>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
